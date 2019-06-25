@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter_first_app/src/validators/validations.dart';
-
 class LoginBloc {
   StreamController userController = new StreamController();
   StreamController passController = new StreamController();
@@ -9,7 +7,7 @@ class LoginBloc {
   Stream get userStream => userController.stream;
   Stream get passStream => passController.stream;
 
-  bool isValidInfor(String username, String pass) {
+  /*bool isValidInfor(String username, String pass) {
     if (!Validations.isValidUser(username)) {
       userController.sink.addError("Tài khoản không hợp lệ");
       return false;
@@ -21,7 +19,7 @@ class LoginBloc {
     }
     passController.sink.add("OK");
     return true;
-  }
+  }*/
   void dispose(){
     userController.close();
     passController.close();

@@ -2,20 +2,75 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_first_app/src/blocs/login_bloc.dart';
 import 'package:flutter_first_app/src/resource/register_page.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'forgot_pass.dart';
 import 'home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
+Future<bool> SavePre(bool check) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setBool("check", check);
+  return prefs.commit();
+}
+Future<bool> Savetoken(String token) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString("token", token);
+  return prefs.commit();
+}
+
 class _LoginPageState extends State<LoginPage> {
   LoginBloc bloc = new LoginBloc();
   bool _showpass = false;
-
+  int statusCode;
+  String messega = "";
+  bool isKYCVerified;
+  String token = null;
+  var extra;
   TextEditingController _userController = new TextEditingController();
   TextEditingController _passController = new TextEditingController();
+
+  String url = 'http://142.93.253.93:81/web-api/login';
+  Future<String> GetData() async {
+    var respone = await http.post(Uri.encodeFull(url), headers: {
+      "Accept": "application/json"
+    }, body: {
+      "username": _userController.text,
+      "password": _passController.text
+    });
+
+    extra = json.decode(respone.body);
+    statusCode = extra["statusCode"];
+    var data = extra["data"];
+    var user = data["user"];
+    isKYCVerified = user["isKYCVerified"];
+    token = data["token"];
+    print(token);
+    if (statusCode == 1) {
+      messega = "";
+      Savetoken(token);
+      SavePre(isKYCVerified).then((bool committed) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      });
+    } else {
+      setState(() {
+        messega = extra["message"];
+      });
+    }
+  }
+
+  @override
+  initState() {
+    super.initState();
+    // Add listeners to this class
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,49 +106,39 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold)),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                child: StreamBuilder(
-                    stream: bloc.userStream,
-                    builder: (context, snapshot) => TextField(
-                          controller: _userController,
-                          style: TextStyle(fontSize: 18, color: Colors.black),
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Colors.black26, width: 1),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10))),
-                              labelText: "UserName",
-                              errorText:
-                                  snapshot.hasError ? snapshot.error : null,
-                              labelStyle: TextStyle(
-                                  color: Colors.black38, fontSize: 15)),
-                        )),
-              ),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                  child: TextField(
+                    controller: _userController,
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black26, width: 1),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10))),
+                        labelText: "UserName",
+                        labelStyle:
+                            TextStyle(color: Colors.black38, fontSize: 15)),
+                  )),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 40),
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                 child: Stack(
                   alignment: AlignmentDirectional.centerEnd,
                   children: <Widget>[
-                    StreamBuilder(
-                        stream: bloc.passStream,
-                        builder: (context, snapshot) => TextField(
-                              controller: _passController,
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.black),
-                              obscureText: !_showpass,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.black26, width: 1),
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  errorText:
-                                      snapshot.hasError ? snapshot.error : null,
-                                  labelText: "Password",
-                                  labelStyle: TextStyle(
-                                      color: Colors.black38, fontSize: 15)),
-                            )),
+                    TextField(
+                      controller: _passController,
+                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      obscureText: !_showpass,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black26, width: 1),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          labelText: "Password",
+                          labelStyle:
+                              TextStyle(color: Colors.black38, fontSize: 15)),
+                    ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                       child: GestureDetector(
@@ -109,6 +154,18 @@ class _LoginPageState extends State<LoginPage> {
                     )
                   ],
                 ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
+                child: Container(
+                    alignment: AlignmentDirectional.center,
+                    child: Text(
+                      messega,
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    )),
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
@@ -151,10 +208,20 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.lightBlue, fontSize: 15)),
                           ]),
                     ),
-                    Container(
-                      child: Text("FORGOT PASSWORD",
-                          style:
-                              TextStyle(color: Colors.lightBlue, fontSize: 15)),
+                    RichText(
+                      text: TextSpan(
+                        text: "FORGOT PASSWORD",
+                        style: TextStyle(
+                          color: Colors.lightBlue, fontSize: 15),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ForgotPass()));
+                          }
+                      ),
                     )
                   ],
                 ),
@@ -167,12 +234,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void onSignInClick() {
-    setState(() {
-      if (bloc.isValidInfor(_userController.text, _passController.text)) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
-      }
-    });
+    GetData();
   }
 
   void onShowPass() {

@@ -46,13 +46,15 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     extra = json.decode(respone.body);
+
     statusCode = extra["statusCode"];
-    var data = extra["data"];
-    var user = data["user"];
-    isKYCVerified = user["isKYCVerified"];
-    token = data["token"];
-    print(token);
+
+
     if (statusCode == 1) {
+      var data = extra["data"];
+      var user = data["user"];
+      isKYCVerified = user["isKYCVerified"];
+      token = data["token"];
       messega = "";
       Savetoken(token);
       SavePre(isKYCVerified).then((bool committed) {
@@ -62,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       setState(() {
         messega = extra["message"];
+        print(messega);
       });
     }
   }
@@ -185,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 40, 0, 30),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

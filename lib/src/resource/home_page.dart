@@ -14,35 +14,46 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool check;
-  String token = "1";
-  File file;
+  bool check = false;
+  String token = "";
+  File file = null;
 
-  void _choose()  {
-    setState(()async {
-      file = await ImagePicker.pickImage(source: ImageSource.camera,maxHeight: 240.0,
-          maxWidth: 240.0);
+
+  void _choose() async {
+    file =
+    await ImagePicker.pickImage(source: ImageSource.gallery, maxHeight: 240.0,
+        maxWidth: 240.0);
+    setState(() {
+      Image.file(file);
     });
   }
 
-  void _take() {
-    setState(()async {
-      file = await ImagePicker.pickImage(source: ImageSource.gallery,maxHeight: 240.0,
-          maxWidth: 240.0);
+  void _take() async {
+    file = await ImagePicker.pickImage(source: ImageSource.camera,maxHeight: 240.0,
+        maxWidth: 240.0);
+    setState(() {
+      Image.file(file);
     });
   }
+
+
   void _upload() async {
+
+
+
     var stream = new http.ByteStream(DelegatingStream.typed(file.openRead()));
     var length = await file.length();
 
     var uri = Uri.parse("http://142.93.253.93:81/web-api/KYC-upload-img");
 
-    var request = new http.MultipartRequest("POST", uri);
+    var request = new http.MultipartRequest("POST", uri,);
     var multipartFile = new http.MultipartFile('myImage', stream, length,
         filename: basename(file.path));
     //contentType: new MediaType('image', 'png'));
 
     request.files.add(multipartFile);
+    print(token);
+    request.headers.addAll({"authorization":token});
     var response = await request.send();
     print(response.statusCode);
     response.stream.transform(utf8.decoder).listen((value) {
@@ -61,8 +72,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: SingleChildScrollView(
+      appBar: AppBar(
+        title: Text("Home Page"),
+      ),
+      body: !check ? SingleChildScrollView(
+        padding: EdgeInsets.all(10),
         child: Column(
           children: <Widget>[
             Row(
@@ -85,11 +99,13 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             file == null ? Text('No Image Selected') : Image.file(file),
-            Text(check.toString()),
-            //Text(token)
           ],
         ),
-      ),
+      ): SingleChildScrollView(
+        child: Center(
+          child: Text("Chào mừng bạn đến với Trái Đất"),
+        ),
+      )
     );
   }
 

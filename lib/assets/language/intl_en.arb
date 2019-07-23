@@ -1,0 +1,128 @@
+{
+  "@@last_modified": "2019-07-16T16:39:25.959032",
+  "welTxtLoginScreen": "Hello \nWelcome Back",
+  "@welTxtLoginScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNameTxtBox": "Username",
+  "@userNameTxtBox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordTxtBox": "Password",
+  "@passwordTxtBox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reenterPassTxtBox": "Re-enter password",
+  "@reenterPassTxtBox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideTitle": "Hide",
+  "@hideTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUpBtn": "Sign up",
+  "@signUpBtn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPasswordScreenTitle": "Forgot your password",
+  "@forgotPasswordScreenTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterEmailMessage": "Please enter the email you use to register your account : ",
+  "@enterEmailMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmBtnTitle": "Confirm",
+  "@confirmBtnTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelBtnTitle": "Cancel",
+  "@cancelBtnTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterVerifyCodeMessage": "An email has just been sent to your inbox, check and enter the code you received :",
+  "@enterVerifyCodeMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showTitle": "Show",
+  "@showTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginBtn": "Log in",
+  "@loginBtn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newUserQues": "New User? ",
+  "@newUserQues": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "registerTitle": "REGISTER",
+  "@registerTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPasswordTitle": "FORGOT PASSWORD",
+  "@forgotPasswordTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "titleHomeScreen": "Home",
+  "@titleHomeScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "textHomeScreen": "This is home screen",
+  "@textHomeScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "titleSettingsScreen": "Settings",
+  "@titleSettingsScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeColorTitle": "Theme color",
+  "@themeColorTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileTitle": "Profile",
+  "@profileTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logoutTitle": "Logout",
+  "@logoutTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailAddressTitle": "Email address: ",
+  "@emailAddressTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "phoneTitle": "Phone",
+  "@phoneTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roleTitle": "Role",
+  "@roleTitle": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

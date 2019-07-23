@@ -1,0 +1,128 @@
+{
+  "@@last_modified": "2019-07-16T16:39:25.959032",
+  "welTxtLoginScreen": "Xin chào \nChào mừng quay trở lại",
+  "@welTxtLoginScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "userNameTxtBox": "Tên đăng nhập",
+  "@userNameTxtBox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "passwordTxtBox": "Mật khẩu",
+  "@passwordTxtBox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "reenterPassTxtBox": "Nhập lại mật khẩu",
+  "@reenterPassTxtBox": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hideTitle": "Ẩn",
+  "@hideTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "signUpBtn": "Đăng kí",
+  "@signUpBtn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPasswordScreenTitle": "Bạn quên mật khẩu ?",
+  "@forgotPasswordScreenTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterEmailMessage": "Nhập địa chỉ email mà bạn sử dụng để đăng kí : ",
+  "@enterEmailMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "confirmBtnTitle": "Xác nhận",
+  "@confirmBtnTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "cancelBtnTitle": "Huỷ",
+  "@cancelBtnTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "enterVerifyCodeMessage": "Một email vừa được gửi đến hòm thư của bạn, kiểm tra và nhập vào ô dưới đoạn mã mà bạn nhận được :",
+  "@enterVerifyCodeMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "showTitle": "Hiện",
+  "@showTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loginBtn": "Đăng nhập",
+  "@loginBtn": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newUserQues": "Chưa có tài khoản? ",
+  "@newUserQues": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "registerTitle": "Đăng kí",
+  "@registerTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "forgotPasswordTitle": "Quên mật khẩu",
+  "@forgotPasswordTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "titleHomeScreen": "Trang chủ",
+  "@titleHomeScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "textHomeScreen": "Đây là trang chủ",
+  "@textHomeScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "titleSettingsScreen": "Cài đặt",
+  "@titleSettingsScreen": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "themeColorTitle": "Màu nền",
+  "@themeColorTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "profileTitle": "Thông tin người dùng",
+  "@profileTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "logoutTitle": "Đăng xuất",
+  "@logoutTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "emailAddressTitle": "Địa chỉ email: ",
+  "@emailAddressTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "phoneTitle": "Số điện thoại: ",
+  "@phoneTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "roleTitle": "Quyền: ",
+  "@roleTitle": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
